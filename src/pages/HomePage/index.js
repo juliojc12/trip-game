@@ -80,11 +80,11 @@ function HomePage () {
               Parceiros
             </Link>
           </nav>
-          <Button variant="contained" color="primary" className={classes.link}>
             <NavLinks to="/login" className={classes.link}>
-              Login
+              <Button variant="contained" color="primary" className={classes.link}>
+                Login
+              </Button>
             </NavLinks>
-          </Button>
         </Toolbar>
       </AppBar>
 
