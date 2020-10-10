@@ -5,16 +5,14 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link as NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import GoogleLogin from 'react-google-login'
-import FacebookLogin from 'react-facebook-login'
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,11 +38,14 @@ const useStyles = makeStyles((theme) => ({
 
 function LoginPage() {
   const classes = useStyles();
+
   const responseGoogle = (response) => {
     console.log(response)
+
   }
   const responseFacebook = (response) => {
     console.log(response)
+    console.log("test")
   }
 
   return (
@@ -108,9 +109,14 @@ function LoginPage() {
             <Grid item>
               <FacebookLogin 
                 appId="759638867934490"
-                autoLoad = { true }
                 fields = "name, email, picture"
+                scope = "public_profile, email, user_brithday"
+                onClick={ responseFacebook }
                 callback = { responseFacebook }
+                icon="fa-facebook"
+                render={renderProps => (
+                  <Link to='/'> Facebook </Link>
+                )}
               />
             </Grid>
           </Grid>
