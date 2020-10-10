@@ -12,19 +12,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Link as NavLink } from 'react-router-dom'
+import GoogleLogin from 'react-google-login'
+import FacebookLogin from 'react-facebook-login'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -49,6 +40,12 @@ const useStyles = makeStyles((theme) => ({
 
 function LoginPage() {
   const classes = useStyles();
+  const responseGoogle = (response) => {
+    console.log(response)
+  }
+  const responseFacebook = (response) => {
+    console.log(response)
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -58,7 +55,7 @@ function LoginPage() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Trip Game
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -67,7 +64,7 @@ function LoginPage() {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Email"
             name="email"
             autoComplete="email"
             autoFocus
@@ -78,14 +75,14 @@ function LoginPage() {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="Senha"
             type="password"
             id="password"
             autoComplete="current-password"
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            label="Lembrar-me"
           />
           <Button
             type="submit"
@@ -94,25 +91,48 @@ function LoginPage() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Login
           </Button>
+
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
+              <GoogleLogin 
+                clientId = "741832924126-ida6s7ioj1ido6164e1881pdcvcgbdjc.apps.googleusercontent.com"
+                buttonText = "Login com Google"
+                onSuccess = {responseGoogle}
+                onFailure = {responseGoogle}
+                cookiePolicy = {'single_host_origin'}
+              />
             </Grid>
+
             <Grid item>
+              <FacebookLogin 
+                appId="759638867934490"
+                autoLoad = { true }
+                fields = "name, email, picture"
+                callback = { responseFacebook }
+              />
+            </Grid>
+          </Grid>
+
+
+
+
+
+          <Grid container>
+            {/* <Grid item xs>
               <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+                Esqueceu sua senha?
+              </Link>
+            </Grid> */}
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                {"Não têm uma conta? cadastre-se"}
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }
