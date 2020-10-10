@@ -41,6 +41,7 @@ function LoginPage() {
 
   const responseGoogle = (response) => {
     console.log(response)
+    console.log(response.user)
 
   }
   const responseFacebook = (response) => {
@@ -132,8 +133,8 @@ function LoginPage() {
               </Link>
             </Grid> */}
             <Grid item xs>
-              <Link href="#" variant="body2">
-                {"Não têm uma conta? cadastre-se"}
+              <Link to="/cadastro">
+                Não têm uma conta? cadastre-se.
               </Link>
             </Grid>
           </Grid>
