@@ -99,7 +99,7 @@ function LoginPage() {
           <Grid container>
             <Grid item xs>
               <GoogleLogin 
-                clientId = "741832924126-ida6s7ioj1ido6164e1881pdcvcgbdjc.apps.googleusercontent.com"
+                clientId = "idGoogle"
                 buttonText = "Login com Google"
                 onSuccess = {responseGoogle}
                 onFailure = {responseGoogle}
